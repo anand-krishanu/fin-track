@@ -66,4 +66,8 @@ public class UserService {
     public void deleteUser (Long id) {
         userRepository.deleteById(id);
     }
+
+    public List<User> getUsersByFamily (long familyId) {
+        return userRepository.findByFamilyId(familyId);
+    }
 }
