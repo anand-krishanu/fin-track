@@ -16,7 +16,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String secretKey = "this_is_my_secret_key_which_is_really_really_good";
+    private final String secretKey = "this_is_my_hawk_tuah_skibidi_john_pork_ohio_tungtungtungsahur_key";
 
     public String generateToken(String username) {
         return generateToken(new HashMap<>(), username);
@@ -27,7 +27,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 30))) // 30 hours
+                .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 10))) // 10 hours until the token expires
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
