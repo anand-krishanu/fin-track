@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Family {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @Column(nullable = false)
