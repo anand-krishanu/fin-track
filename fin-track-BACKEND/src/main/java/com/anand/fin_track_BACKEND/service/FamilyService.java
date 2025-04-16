@@ -17,9 +17,9 @@ public class FamilyService {
         familyRepository.save(family);
     }
 
-    public Optional<Family> getFamilyById (Long id) {
-        return Optional.ofNullable(familyRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Family Not Found!")));
+    public Family getFamilyById(Long id) {
+        return familyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Family Not Found!"));
     }
 
     public List<Family> getAllFamilies () {
