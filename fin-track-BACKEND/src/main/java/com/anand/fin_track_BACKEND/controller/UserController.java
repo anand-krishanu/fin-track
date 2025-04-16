@@ -19,19 +19,19 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<?> getAllUsers () {
         return ResponseEntity.ok(userService.getAllUser());
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #id == authentication.principal.id")
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUserById (@PathVariable Long id, @RequestBody UserRequest userRequest) {
         return ResponseEntity.ok(userService.updateUser(id, userRequest));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #id == authentication.principal.id")
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUserById (@PathVariable Long id) {
         userService.deleteUser(id);

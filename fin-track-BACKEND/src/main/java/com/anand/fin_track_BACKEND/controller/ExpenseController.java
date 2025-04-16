@@ -17,7 +17,7 @@ public class ExpenseController {
     ExpenseService expenseService;
 
     @GetMapping("/{id}")
-    public Optional<Expense> getExpanseById (@PathVariable Long id) {
+    public Optional<Expense> getExpenseById (@PathVariable Long id) {
         return expenseService.getExpenseById(id);
     }
 
@@ -27,21 +27,21 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addFamily (@RequestBody Expense expense) {
+    public ResponseEntity<?> addExpense (@RequestBody Expense expense) {
         expenseService.saveExpense(expense);
 
         return ResponseEntity.ok("Expense Added!");
     }
 
     @PutMapping
-    public ResponseEntity<?> updateFamilyById (@PathVariable Long id, @RequestBody Expense expense) {
+    public ResponseEntity<?> updateExpenseById (@PathVariable Long id, @RequestBody Expense expense) {
         expenseService.updateExpense(id, expense);
 
         return ResponseEntity.ok("Expanse Updated");
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteFamilyById (@PathVariable Long id) {
+    public ResponseEntity<?> deleteExpenseById(@PathVariable Long id) {
         expenseService.deleteExpense(id);
 
         return ResponseEntity.ok("Expense Deleted!");

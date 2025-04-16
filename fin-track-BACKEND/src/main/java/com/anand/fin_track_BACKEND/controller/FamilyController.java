@@ -17,19 +17,20 @@ public class FamilyController {
     @Autowired
     FamilyService familyService;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
-    public Optional<Family> getFamilyById (@PathVariable Long id) {
-        return familyService.getFamilyById(id);
+    public ResponseEntity<Family> getFamilyById(@PathVariable Long id) {
+        Family family = familyService.getFamilyById(id);
+        return ResponseEntity.ok(family);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<Family> getAllFamilies () {
         return familyService.getAllFamilies();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #id == authentication.principal.family.id")
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.family.id")
     @PostMapping
     public ResponseEntity<?> addFamily (@RequestBody Family family) {
         familyService.saveFamily(family);
@@ -37,7 +38,7 @@ public class FamilyController {
         return ResponseEntity.ok("Family Added!");
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping
     public ResponseEntity<?> updateFamilyById (@PathVariable Long id, @RequestBody Family family) {
         familyService.updateFamily(id, family);
