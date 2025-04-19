@@ -43,9 +43,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById (Long id) {
-        return Optional.ofNullable(userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User Not Found!")));
+    public User getUserById (Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User Not Found!"));
+
     }
 
     public User updateUser(Long id, UserRequest userRequest) {
