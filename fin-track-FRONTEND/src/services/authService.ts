@@ -14,7 +14,7 @@ export const register = async (data: RegisterRequest): Promise<JwtResponse> => {
 
 export const login = async (data: LoginRequest): Promise<JwtResponse> => {
   try {
-    const response = await api.post(`${API_URL}/login`, null, { params: data });
+    const response = await api.post(`${API_URL}/login`, data);
     return response.data;
   } catch (error) {
     throw new Error("Error logging in: " + error);
